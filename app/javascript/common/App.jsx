@@ -1,5 +1,5 @@
-import React, { useReducer, useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useReducer, useState } from 'react';
+import { BrowserRouter, Routes, Route   } from 'react-router-dom';
 import Crud from './Crud';
 import ProductList from './ProductList';
 
@@ -18,9 +18,6 @@ function productReducer(state, action) {
         product.ID === action.payload.ID ? { ...product, ...action.payload.updatedProduct } : product
       );
 
-    case 'FETCH_PRODUCTS':
-      return  action.payload
-        
 
     default:
       return state;
@@ -33,17 +30,6 @@ function App() {
     name: '',
     price: '',
   });
-
-useEffect(() =>{
-  fetch('/api/products')
-  .then(response => response.json())
-  .then(product => 
-    dispatch({type: 'FETCH_PRODUCTS', payload:product})
-  )
-  .catch(error => {
-    console.log(error)
-  });
-},[])
 
 
   const addProduct = () => {
@@ -66,6 +52,7 @@ useEffect(() =>{
     });
   };
 
+
   const updateProduct = (productID, updatedProduct) => {
     dispatch({
       type: 'UPDATE_PRODUCT',
@@ -76,28 +63,21 @@ useEffect(() =>{
     });
   };
 
-  const productUpdate = (productID) => {
-    const updatedName = prompt('Enter updated name:');
-    const updatedPrice = prompt('Enter updated price:');
+  // const productUpdate = (productID) => {
+  //   const updatedName = prompt('Enter updated name:');
+  //   const updatedPrice = prompt('Enter updated price:');
 
-    if (updatedName !== null && updatedPrice !== null) {
-      updateProduct(productID, { Name: updatedName, price: updatedPrice });
-    }
-  };
+  //   if (updatedName !== null && updatedPrice !== null) {
+  //     updateProduct(productID, { Name: updatedName, price: updatedPrice });
+  //   }
+  // };
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Crud setNewProduct={setNewProduct} newProduct={newProduct} addProduct={addProduct} />} />
-        <Route path="/ProductList" element={<ProductList products={products} productUpdate={productUpdate} deleteProduct={deleteProduct} />} />
+      <Routes>    
+        <Route path="/" element={<Crud setNewProduct={setNewProduct} newProduct={newProduct} addProduct={addProduct}  products={products} updateProduct={updateProduct} />} />
+        <Route path="/ProductList" element={<ProductList products={products}  deleteProduct={deleteProduct} />} />
       </Routes>
-
-      <div>
-        <h2>API Data</h2>
-        {products.map(item =>(
-          <li key ={item.id}>{item.name},{item.price}</li>
-        ))}
-      </div>
           </BrowserRouter>
   );
 }
