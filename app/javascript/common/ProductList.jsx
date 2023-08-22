@@ -15,7 +15,7 @@ function ProductList(props) {
             <button onClick={() => deleteProduct(product.ID)}>Delete</button>
 
             <Link to={{ pathname: "/" }}>
-               <button onClick={() => updateProduct(product.ID)}>Update</button>
+               <button onClick={() => updateProduct(product)}>Update</button>
             </Link>
 
           </li>

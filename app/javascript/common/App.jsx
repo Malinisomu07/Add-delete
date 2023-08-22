@@ -2,6 +2,8 @@ import React, { useReducer, useState } from 'react';
 import { BrowserRouter, Routes, Route   } from 'react-router-dom';
 import Crud from './Crud';
 import ProductList from './ProductList';
+import _ from 'lodash';
+
 
 const ProductDetails = [];
 
@@ -53,15 +55,22 @@ function App() {
   };
 
 
-  const updateProduct = (productID, updatedProduct) => {
-    dispatch({
-      type: 'UPDATE_PRODUCT',
-      payload: {
-        ID: productID,
-        updatedProduct: updatedProduct,
-      },
-    });
+  const updateProduct = (product ) => {
+  console.log();
+
+    const productIndex = _.find(products, { ID: productID });
+    console.log('product', productIndex)
+    setNewProduct({
+      name: productIndex.name,
+      price: productIndex.price,
+
+    })
+  
+
   };
+  
+
+
 
   // const productUpdate = (productID) => {
   //   const updatedName = prompt('Enter updated name:');
@@ -76,7 +85,7 @@ function App() {
     <BrowserRouter>
       <Routes>    
         <Route path="/" element={<Crud setNewProduct={setNewProduct} newProduct={newProduct} addProduct={addProduct}  products={products} updateProduct={updateProduct} />} />
-        <Route path="/ProductList" element={<ProductList products={products}  deleteProduct={deleteProduct} />} />
+        <Route path="/ProductList" element={<ProductList products={products}  deleteProduct={deleteProduct} updateProduct={updateProduct} />} />
       </Routes>
           </BrowserRouter>
   );

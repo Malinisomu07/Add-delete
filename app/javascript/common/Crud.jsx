@@ -6,7 +6,7 @@ import { Link} from 'react-router-dom';
 function Crud(props) {
 
   const {setNewProduct, newProduct, addProduct, products, updateProduct} = props
-  const [updatedName, setUpdateName] = useState('');
+  const [updatedName, setUpdateName] = useState('malini');
   const [updatedPrice, setUpdatePrice] = useState('');
 
   const saveUpdate = (productID) => {
@@ -43,6 +43,9 @@ function Crud(props) {
         <br />
         <br />
         <button onClick={addProduct}>Add Product</button>
+        <button onClick={()=> saveUpdate(product.ID)}>Save</button>
+
+
         
         <Link to={{ pathname: "/ProductList"}}>
         <button >Show Product</button>
@@ -51,7 +54,7 @@ function Crud(props) {
 
       </div>
 
-      <div>
+      {/* <div>
         <h2>Update Products</h2>
         <ul>
           {products.map((product) => (
@@ -75,14 +78,13 @@ function Crud(props) {
           }
         />
         </div>
-
         <button onClick={()=> saveUpdate(product.ID)}>Save</button>
 
         
         </li>
         ))}
         </ul>
-      </div>
+      </div> */}
 
     </div>
   );
