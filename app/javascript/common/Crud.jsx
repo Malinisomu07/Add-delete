@@ -5,17 +5,17 @@ import { Link} from 'react-router-dom';
 
 function Crud(props) {
 
-  const {setNewProduct, newProduct, addProduct, products, updateProduct} = props
-  const [updatedName, setUpdateName] = useState('malini');
-  const [updatedPrice, setUpdatePrice] = useState('');
+  const {setNewProduct, newProduct, addProduct} = props
 
-  const saveUpdate = (productID) => {
-    if (updatedName !=='' && updatedPrice !=='') {
-      updateProduct(productID, {name: updatedName, price: updatedPrice});
-      setUpdateName('');
-      setUpdatePrice('');
-    }
-  }
+  // const saveUpdate = () => {
+  //   if (newProduct.name && newProduct.price) {
+  //     updateProduct(newProduct); 
+  //     setNewProduct({
+  //       name: '',
+  //       price: '',
+  //     });
+  //   }
+  // };
  
   return (
     <div className='container'>
@@ -43,7 +43,7 @@ function Crud(props) {
         <br />
         <br />
         <button onClick={addProduct}>Add Product</button>
-        <button onClick={()=> saveUpdate(product.ID)}>Save</button>
+        {/* <button  onClick={()=> saveUpdate()}>Save</button> */}
 
 
         
@@ -54,37 +54,6 @@ function Crud(props) {
 
       </div>
 
-      {/* <div>
-        <h2>Update Products</h2>
-        <ul>
-          {products.map((product) => (
-            <li key ={product.Id}>
-
-         <div>
-        <input
-          type="text"
-          placeholder="Update Name"
-          value={updatedName}
-          onChange={(e) =>
-            setUpdateName(e.target.value)
-          }
-        />
-        <input
-          type="number"
-          placeholder="Update Price"
-          value={updatedPrice}
-          onChange={(e) =>
-            setUpdatePrice(e.target.value)
-          }
-        />
-        </div>
-        <button onClick={()=> saveUpdate(product.ID)}>Save</button>
-
-        
-        </li>
-        ))}
-        </ul>
-      </div> */}
 
     </div>
   );
