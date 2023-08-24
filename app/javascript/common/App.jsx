@@ -70,17 +70,6 @@ function App() {
   };
   
 
-
-
-  // const productUpdate = (productID) => {
-  //   const updatedName = prompt('Enter updated name:');
-  //   const updatedPrice = prompt('Enter updated price:');
-
-  //   if (updatedName !== null && updatedPrice !== null) {
-  //     updateProduct(productID, { Name: updatedName, price: updatedPrice });
-  //   }
-  // };
-
   return (
     <BrowserRouter>
       <Routes>    
